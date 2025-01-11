@@ -58,7 +58,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.output.text = '네. 고객센터에 연결해드릴게요.';
         resp.fallback = true;
     }
-    if (req.input.text.includes('번 계좌로 이체해줘줘')) {
+    if (req.input.text.includes('번 계좌로 이체해줘')) {
         resp.output.text = '네. 어느 계좌로 이체할까요?';
         resp.fallback = true;
     }
