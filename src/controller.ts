@@ -39,26 +39,37 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
 
     // Handle welcome message
     if (req.optionalArgs?.kind == 'init') {
-        resp.output.text = 'Hi there!';
+        resp.output.text = '안녕하세요. 무엇을 도와드릴까요?';
     }
 
-    // Set fallback response example (can be handled by skills in the project)
-    if (req.input.text.toLowerCase().startsWith('why')) {
-        resp.output.text = 'I do not know how to answer that';
+    if (req.input.text.startsWith('이체해')) {
+        resp.output.text = '네. 어느 계좌로 이체할까요?';
+        resp.fallback = true;
+    }
+    if (req.input.text.startsWith('계좌조회')) {
+        resp.output.text = '네. 계좌조회로 안내해드릴게요.';
+        resp.fallback = true;
+    }
+    if (req.input.text.startsWith('적금')) {
+        resp.output.text = '네. 적금 추천으로 안내해드릴게요.';
+        resp.fallback = true;
+    }
+    if (req.input.text.startsWith('고객센터')) {
+        resp.output.text = '네. 고객센터에 연결해드릴게요.';
         resp.fallback = true;
     }
 
     // SM content cards example
-    if (req.input.text.toLowerCase() == 'show card') {
-        resp.output.text = 'Here is a cat @showcards(cat)';
-        resp.variables['public-cat'] = {
-            'component': 'image',
-            'data': {
-                'alt': 'A cute kitten',
-                'url': 'https://placekitten.com/300/300'
-            }
-        };
-    }
+    // if (req.input.text.toLowerCase() == 'show card') {
+    //     resp.output.text = 'Here is a cat @showcards(cat)';
+    //     resp.variables['public-cat'] = {
+    //         'component': 'image',
+    //         'data': {
+    //             'alt': 'A cute kitten',
+    //             'url': 'https://placekitten.com/300/300'
+    //         }
+    //     };
+    // }
 
     sendMessage(ws, resp);
 }
