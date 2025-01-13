@@ -46,24 +46,24 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.output.text = '네. 어떤 계좌에서 이체할까요?';
         resp.fallback = true;
     }
-    if (req.input.text.startsWith('계좌조회')) {
+    else if (req.input.text.startsWith('계좌조회')) {
         resp.output.text = '네. 계좌조회로 안내해드릴게요.';
         resp.fallback = true;
     }
-    if (req.input.text.startsWith('적금')) {
+    else if (req.input.text.startsWith('적금')) {
         resp.output.text = '네. 적금 추천으로 안내해드릴게요.';
         resp.fallback = true;
     }
-    if (req.input.text.startsWith('고객센터')) {
+    else if (req.input.text.startsWith('고객센터')) {
         resp.output.text = '네. 고객센터에 연결해드릴게요.';
         resp.fallback = true;
     }
-    if (req.input.text.includes('번 계좌로 이체해줘')) {
+    else if (req.input.text.includes('번 계좌로 이체해줘')) {
         resp.output.text = '네. 누구에게 보낼까요?';
         resp.fallback = true;
     }
-    if (req.input.text.includes('에게 이체해줘')) {
-        resp.output.text = `네. ${req.input.text.replace('에게 이체해줘', '')}계좌로 이체할게요.`;
+    else if (req.input.text.includes('에게 이체해줘')) {
+        resp.output.text = `네. ${req.input.text.replace('에게 이체해줘', '')}계좌로 이체할게요. 얼마를 이체할까요?`;
         resp.fallback = true;
     }
 
