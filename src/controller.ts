@@ -62,6 +62,10 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.output.text = '네. 어느 계좌로 이체할까요?';
         resp.fallback = true;
     }
+    if (req.input.text.includes('에게 이체해줘')) {
+        resp.output.text = `네. ${req.input.text.replace('에게 이체해줘', '')}계좌로 이체할게요.`;
+        resp.fallback = true;
+    }
 
     // SM content cards example
     // if (req.input.text.toLowerCase() == 'show card') {
