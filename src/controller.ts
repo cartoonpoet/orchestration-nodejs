@@ -43,8 +43,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
     if (req.optionalArgs?.kind == 'init') {
         resp.output.text = '안녕하세요. 무엇을 도와드릴까요?';
     }
-
-    if (req.input.text.startsWith('이체해')) {
+    else if (req.input.text.startsWith('이체해')) {
         resp.output.text = '네. 어떤 계좌에서 이체할까요?';
         resp.fallback = true;
     }
