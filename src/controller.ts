@@ -43,7 +43,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
     }
 
     if (req.input.text.startsWith('이체해')) {
-        resp.output.text = '네. 어느 계좌에서 이체할까요?';
+        resp.output.text = '네. 어떤 계좌에서 이체할까요?';
         resp.fallback = true;
     }
     if (req.input.text.startsWith('계좌조회')) {
@@ -59,7 +59,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.fallback = true;
     }
     if (req.input.text.includes('번 계좌로 이체해줘')) {
-        resp.output.text = '네. 어느 계좌로 이체할까요?';
+        resp.output.text = '네. 누구에게 보낼까요?';
         resp.fallback = true;
     }
     if (req.input.text.includes('에게 이체해줘')) {
