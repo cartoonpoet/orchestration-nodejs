@@ -17,8 +17,8 @@ export function koreanToNumber(korean) {
       조: 1000000000000,
     };
   
-    // "원", "만 원", "억 원" 등을 제거
-    korean = korean.replace(/(원|만|억)/g, '');
+    // "원" 또는 다른 단위 제거
+    korean = korean.split(' ')[0].replace(/원/g, '');
   
     let result = 0; // 최종 결과 값
     let temp = 0; // 단위 이하 값을 임시 저장
@@ -44,4 +44,3 @@ export function koreanToNumber(korean) {
   
     return result + temp * currentUnit; // 남아 있는 값 더하기
   }
-  
