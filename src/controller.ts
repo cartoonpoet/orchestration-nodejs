@@ -14,6 +14,8 @@
 
 import { ConversationRequest, ConversationResponse, SMmessage } from 'interfaces';
 import * as WebSocket from 'ws';
+import {koreanToNumber} from './utils/func'
+
 
 export function handleMessage(ws: WebSocket, message: any) {
     try {
@@ -64,6 +66,14 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
     }
     else if (req.input.text.includes('에게 이체해줘')) {
         resp.output.text = `네. ${req.input.text.replace('에게 이체해줘', '')}계좌로 이체할게요. 얼마를 이체할까요?`;
+        resp.fallback = true;
+    }
+    else if (req.input.text.includes('원 보내')){
+        resp.output.text = `네. ${koreanToNumber(req.input.text)}원을 보낼게요. 받는 분과 금액을 한 번 더 확인해주세요.`;
+        resp.fallback = true;
+    }
+    else {
+        resp.output.text = `다시 한번 말해주실래요?`;
         resp.fallback = true;
     }
 
