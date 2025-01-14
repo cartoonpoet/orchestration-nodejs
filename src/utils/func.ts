@@ -30,3 +30,16 @@ export function koreanToNumber(korean) {
   
     return result + temp; // 남은 값 더하기
   }
+
+  export function parseInput(input) {
+    const amountPattern = /([0-9,]+원|[0-9]+)(만원|천원|원)?/;
+    const receiverPattern = /에게|한테|보내/;
+  
+    const amountMatch = input.match(amountPattern);
+    const receiverMatch = input.split(receiverPattern)[0].trim();
+  
+    const amount = amountMatch ? amountMatch[0].replace(/[^\d]/g, '') : null;
+    const receiver = receiverMatch || "알 수 없음";
+  
+    return { receiver, amount };
+  }

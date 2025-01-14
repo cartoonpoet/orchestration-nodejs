@@ -14,7 +14,7 @@
 
 import { ConversationRequest, ConversationResponse, SMmessage } from 'interfaces';
 import * as WebSocket from 'ws';
-import {koreanToNumber} from './utils/func'
+import {koreanToNumber, parseInput} from './utils/func'
 
 
 export function handleMessage(ws: WebSocket, message: any) {
@@ -41,10 +41,10 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
 
     // Handle welcome message
     if (req.optionalArgs?.kind == 'init') {
-        resp.output.text = '안녕하세요. 무엇을 도와드릴까요?';
+        resp.output.text = '원하는 업무를 말씀해 주세요.';
     }
-    else if (req.input.text.startsWith('이체해')) {
-        resp.output.text = '네. 어떤 계좌에서 이체할까요?';
+    else if (req.input.text.trim().includes('보내줘')) {
+        resp.output.text = '어떤 계좌에서 이체할까요? 첫번째 또는 저축예금통장으로 말씀해 주세요.';
         resp.fallback = true;
     }
     else if (req.input.text.startsWith('계좌조회')) {
@@ -59,16 +59,22 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.output.text = '네. 고객센터에 연결해드릴게요.';
         resp.fallback = true;
     }
-    else if (req.input.text.includes('번 계좌로 이체해줘')) {
-        resp.output.text = '네. 누구에게 보낼까요?';
+    else if (req.input.text.trim().includes('번째')) {
+        resp.output.text = '누구에게 보낼까요? 최근 이체한 계좌도 함께 보여드릴께요.';
         resp.fallback = true;
     }
-    else if (req.input.text.includes('에게 이체해줘')) {
-        resp.output.text = `네. ${req.input.text.replace('에게 이체해줘', '')}계좌로 이체할게요. 얼마를 이체할까요?`;
+    else if (req.input.text.trim().includes('통장')) {
+        resp.output.text = '누구에게 보낼까요? 최근 이체한 계좌도 함께 보여드릴께요.';
         resp.fallback = true;
     }
-    else if (req.input.text.includes('원 보내')){
-        resp.output.text = `네. ${koreanToNumber(req.input.text)}원을 보낼게요. 받는 분과 금액을 한 번 더 확인해주세요.`;
+    else if (req.input.text.trim().includes('보내줘')) {
+        resp.output.text = `받는 분의 은행과 계좌번호를 말씀해 주세요.`;
+        resp.fallback = true;
+    }
+    else if (req.input.text.trim().includes('은행')){
+        resp.output.text = `김손자에게 100,000원 보낼게요. 받는 분과 금액을 한 번 더 확인해주세요.
+                            인증을 진행할게요. 화면에 얼굴이 보이게 해주세요.
+                            김손자에게 100,000원 보냈어요.`;
         resp.fallback = true;
     }
     else {
