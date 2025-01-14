@@ -45,7 +45,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
     if (req.optionalArgs?.kind == 'init') {
         resp.output.text = '원하는 업무를 말씀해 주세요.';
     }
-    else if (text.includes('보내줘')) {
+    else if (text.includes('이체해줘')) {
         resp.output.text = '어떤 계좌에서 이체할까요? 첫번째 또는 저축예금통장으로 말씀해 주세요.';
         resp.fallback = true;
     }
