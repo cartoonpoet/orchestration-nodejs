@@ -43,7 +43,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
     if (req.optionalArgs?.kind == 'init') {
         resp.output.text = '원하는 업무를 말씀해 주세요.';
     }
-    else if (req.input.text.trim().includes('보내줘')) {
+    else if (req.input.text.replace(/\s+/g, '').includes('보내줘')) {
         resp.output.text = '어떤 계좌에서 이체할까요? 첫번째 또는 저축예금통장으로 말씀해 주세요.';
         resp.fallback = true;
     }
@@ -59,19 +59,19 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.output.text = '네. 고객센터에 연결해드릴게요.';
         resp.fallback = true;
     }
-    else if (req.input.text.trim().includes('번째')) {
+    else if (req.input.text.replace(/\s+/g, '').includes('번째')) {
         resp.output.text = '누구에게 보낼까요? 최근 이체한 계좌도 함께 보여드릴께요.';
         resp.fallback = true;
     }
-    else if (req.input.text.trim().includes('통장')) {
+    else if (req.input.text.replace(/\s+/g, '').includes('통장')) {
         resp.output.text = '누구에게 보낼까요? 최근 이체한 계좌도 함께 보여드릴께요.';
         resp.fallback = true;
     }
-    else if (req.input.text.trim().includes('보내줘')) {
+    else if (req.input.text.replace(/\s+/g, '').includes('보내줘')) {
         resp.output.text = `받는 분의 은행과 계좌번호를 말씀해 주세요.`;
         resp.fallback = true;
     }
-    else if (req.input.text.trim().includes('은행')){
+    else if (req.input.text.replace(/\s+/g, '').includes('은행')){
         resp.output.text = `김손자에게 100,000원 보낼게요. 받는 분과 금액을 한 번 더 확인해주세요.
                             인증을 진행할게요. 화면에 얼굴이 보이게 해주세요.
                             김손자에게 100,000원 보냈어요.`;
