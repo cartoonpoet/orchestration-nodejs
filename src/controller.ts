@@ -74,7 +74,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.fallback = true;
     }
     else if (text.includes('은행')){
-        resp.output.text = `김손자에게 백만원 보낼게요. 받는 분과 금액을 한 번 더 확인해주세요.
+        resp.output.text = `김손자에게 십만원 보낼게요. 받는 분과 금액을 한 번 더 확인해주세요.
                             인증을 진행할게요. 화면에 얼굴이 보이게 해주세요.`;
         resp.fallback = true;
     }
