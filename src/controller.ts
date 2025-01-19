@@ -40,6 +40,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
     };
 
     const text = req.input.text.replace(/\s+/g, '');
+    const work = req.variables.work;
 
     // Handle welcome message
     if (req.optionalArgs?.kind == 'init') {
@@ -49,8 +50,8 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.output.text = '어떤 계좌에서 이체할까요? 첫번째 또는 저축예금통장으로 말씀해 주세요.';
         resp.fallback = true;
     }
-    else if (text.startsWith('계좌조회')) {
-        resp.output.text = '네. 계좌조회로 안내해드릴게요.';
+    else if (text.includes('계좌조회')) {
+        resp.output.text = '어떤 계좌에서 조회할까요? 첫번째 또는 저축예금통장으로 말씀해 주세요.';
         resp.fallback = true;
     }
     else if (text.startsWith('적금')) {
@@ -62,11 +63,13 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.fallback = true;
     }
     else if (text.includes('번째')) {
-        resp.output.text = '누구에게 보낼까요? 최근 이체한 계좌도 함께 보여드릴께요.';
+        if(work === 'Transfer') resp.output.text = '누구에게 보낼까요? 최근 이체한 계좌도 함께 보여드릴께요.';
+        else if(work === 'Account') resp.output.text = '잔액은 백이십삼십사만오천육백원이에요.';
         resp.fallback = true;
     }
     else if (text.includes('통장')) {
-        resp.output.text = '누구에게 보낼까요? 최근 이체한 계좌도 함께 보여드릴께요.';
+        if(work === 'Transfer') resp.output.text = '누구에게 보낼까요? 최근 이체한 계좌도 함께 보여드릴께요.';
+        else if(work === 'Account') resp.output.text = '잔액은 백이십삼십사만오천육백원이에요.';
         resp.fallback = true;
     }
     else if (text.includes('보내줘')) {
