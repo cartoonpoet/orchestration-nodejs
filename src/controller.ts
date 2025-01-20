@@ -65,6 +65,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
     else if (text.includes('번째')) {
         if(work === 'Transfer') resp.output.text = '누구에게 보낼까요? 최근 이체한 계좌도 함께 보여드릴께요.';
         else if(work === 'Account') resp.output.text = '잔액은 백이십삼십사만오천육백원이에요.';
+        else if(work === 'Savings') resp.output.text = '고객님께 적합한 자유적립식 적금 상품을 추천해 드릴게요. 첫번째 또는 화면에 보이는 상품 이름을 말씀해 주세요.';
         resp.fallback = true;
     }
     else if (text.includes('통장')) {
@@ -83,6 +84,10 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
     }
     else if (text.includes('보냈어요.')){
         resp.output.text = `김손자에게 십만원 보냈어요.`;
+        resp.fallback = true;
+    }
+    else if(text.includes('원하는금액을자유롭게') || text.includes('매월정해진금액')){
+        if(work === 'Savings') resp.output.text = '고객님께 적합한 자유적립식 적금 상품을 추천해 드릴게요. 첫번째 또는 화면에 보이는 상품 이름을 말씀해 주세요.';
         resp.fallback = true;
     }
     else {
