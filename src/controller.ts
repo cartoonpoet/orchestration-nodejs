@@ -54,8 +54,8 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.output.text = '어떤 계좌에서 조회할까요? 첫번째 또는 저축예금통장으로 말씀해 주세요.';
         resp.fallback = true;
     }
-    else if (text.startsWith('적금')) {
-        resp.output.text = '네. 적금 추천으로 안내해드릴게요.';
+    else if (text.includes('적금추천해줘')) {
+        resp.output.text = '적금 상품의 원하는 입금방식을 선택해 주세요. 첫번째 또는 화면에 보이는 입금 방식을 말씀해 주세요.';
         resp.fallback = true;
     }
     else if (text.startsWith('고객센터')) {
