@@ -90,6 +90,10 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         if(work === 'Savings') resp.output.text = '고객님께 적합한 자유적립식 적금 상품을 추천해 드릴게요. 첫번째 또는 화면에 보이는 상품 이름을 말씀해 주세요.';
         resp.fallback = true;
     }
+    else if(text.includes('스마트적금') || text.includes('특별한적금') || text.includes('내맘대로적금')){
+        if(work === 'Savings') resp.output.text = '스마트적금을 가입하시겠어요? 가입 전 상품설명서를 확인해 주세요.';
+        resp.fallback = true;
+    }
     else {
         resp.output.text = `다시 한번 말해주실래요?`;
         resp.fallback = true;
