@@ -59,7 +59,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.fallback = true;
     }
     else if (text.startsWith('고객센터')) {
-        resp.output.text = '네. 고객센터에 연결해드릴게요.';
+        resp.output.text = '상담 방법을 선택해주세요. 첫번째 또는 상담 방법을 말씀해 주세요.';
         resp.fallback = true;
     }
     else if (text.includes('번째')) {
