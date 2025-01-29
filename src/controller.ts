@@ -97,6 +97,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
     }
     else if(text.includes('상담')){
         if(work === 'CallCenter') resp.output.text = '상담 유형을 선택해 주세요. 첫번째 또는 상담 유형을 말씀해 주세요.';
+        resp.fallback = true;
     }
     else {
         resp.output.text = `다시 한번 말해주실래요?`;
