@@ -100,8 +100,8 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.fallback = true;
     }
     else if(text.includes('사고신고') || text.includes('뱅킹') || text.includes('예금') || text.includes('펀드') || text.includes('대출') || text.includes('퇴직연금') || text.includes('민원접수') ){
-        if(work === 'CallCenter') resp.output.text = '';
-        resp.fallback = true;
+        if(work === 'CallCenter') resp.output.text = text;
+        resp.fallback = false;
     }
     else {
         resp.output.text = `다시 한번 말해주실래요?`;
