@@ -22,7 +22,7 @@ export function handleMessage(ws: WebSocket, message: any) {
         const msg: SMmessage = JSON.parse(message);
         if (msg.name == 'conversationRequest') {
             let request: ConversationRequest = msg.body as ConversationRequest;
-            if(request.optionalArgs?.fromCall === 'handleSpeak') handleRequest(ws, request);
+            handleRequest(ws, request);
         }
     } catch {
         console.log('Unrecognized message: ', message);
@@ -41,6 +41,9 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
 
     const text = req.input.text.replace(/\s+/g, '');
     const work = req.variables.work;
+    const fromCall = req.optionalArgs?.fromCall
+
+    if(fromCall !== 'handleSpeak') return
 
     // Handle welcome message
     if (req.optionalArgs?.kind == 'init') {
