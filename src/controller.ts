@@ -41,9 +41,6 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
 
     const text = req.input.text.replace(/\s+/g, '');
     const work = req.variables.work;
-    const fromCall = req.optionalArgs?.fromCall
-
-    if(req.optionalArgs?.kind == 'init' ? false : fromCall != 'handleSpeak') return ws.send('')
 
     // Handle welcome message
     if (req.optionalArgs?.kind == 'init') {
