@@ -43,7 +43,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
     const work = req.variables.work;
     const fromCall = req.optionalArgs?.fromCall
 
-    if(!req.optionalArgs?.kind && fromCall != 'handleSpeak') return ws.send('')
+    if(req.optionalArgs?.kind == 'init' ? false : fromCall != 'handleSpeak') return ws.send('')
 
     // Handle welcome message
     if (req.optionalArgs?.kind == 'init') {
