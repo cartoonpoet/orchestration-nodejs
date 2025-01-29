@@ -22,7 +22,7 @@ export function handleMessage(ws: WebSocket, message: any) {
         const msg: SMmessage = JSON.parse(message);
         if (msg.name == 'conversationRequest') {
             let request: ConversationRequest = msg.body as ConversationRequest;
-            handleRequest(ws, request);
+            if(request.optionalArgs?.fromCall === 'handleSpeak') handleRequest(ws, request);
         }
     } catch {
         console.log('Unrecognized message: ', message);
