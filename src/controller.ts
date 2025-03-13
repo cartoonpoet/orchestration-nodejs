@@ -107,7 +107,7 @@ export function handleRequest(ws: WebSocket, req: ConversationRequest) {
         resp.output.text = `다시 한번 말해주실래요?`;
         resp.fallback = true;
     }
-
+// 
     // SM content cards example
     // if (req.input.text.toLowerCase() == 'show card') {
     //     resp.output.text = 'Here is a cat @showcards(cat)';
